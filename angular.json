@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "cevicheriaFrontend-app"
+    }
+  },
+  "defaultProject": "cevicheriaFrontend-app",
+  "cli": {
+    "analytics": "0805175b-2778-40c7-8ec7-9fcadb0770de"
+  }
 }

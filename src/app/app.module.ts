@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,10 +21,10 @@ import {GuarnicionService} from '../app/CRUDS/guarnicion/guarnicion.service';
 
 const routes: Routes = [
   {path: '', redirectTo: '/Mesa', pathMatch: 'full'},
-  {path:'Mesa', component: MesaComponent},
-  {path:'Bebida', component: BebidaComponent},
-  {path:'Plato', component: PlatoComponent},
-  {path:'Guarnicion', component: GuarnicionComponent}
+  {path:'Mesas', component: MesaComponent},
+  {path:'Bebidas', component: BebidaComponent},
+  {path:'Platos', component: PlatoComponent},
+  {path:'Guarniciones', component: GuarnicionComponent}
 ];
 
 @NgModule({
@@ -40,6 +41,7 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)
   ],
   providers: [

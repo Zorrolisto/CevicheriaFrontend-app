@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Bebida} from './bebida';
+import {BebidaService} from './bebida.service';
 
 @Component({
   selector: 'app-bebida',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BebidaComponent implements OnInit {
 
-  constructor() { }
+  bebidas:Bebida[];
+
+  constructor(private bebidaService:BebidaService) { }
 
   ngOnInit(): void {
+    this.listarBebidas();
+  }
+
+  listarBebidas(){
+    this.bebidaService.getBebidas().subscribe(
+      bebidas=>{this.bebidas=bebidas}
+    )
   }
 
 }

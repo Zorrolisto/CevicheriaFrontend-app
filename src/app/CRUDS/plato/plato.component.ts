@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Plato} from './plato';
+import {PlatoService} from './plato.service';
 
 @Component({
   selector: 'app-plato',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlatoComponent implements OnInit {
 
-  constructor() { }
+  platos:Plato[];
+
+  constructor(private platoService: PlatoService) { }
 
   ngOnInit(): void {
+    this.listarPlatos();
+  }
+
+  listarPlatos(){
+    this.platoService.getPlatos().subscribe(
+      platos => {this.platos = platos}
+    )
   }
 
 }

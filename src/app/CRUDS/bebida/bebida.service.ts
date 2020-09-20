@@ -16,4 +16,20 @@ export class BebidaService {
   getBebidas(): Observable<Bebida[]>{
     return this.http.get<Bebida[]>(this.url);
   }
+
+  getBebida(id):Observable<Bebida>{
+    return this.http.get<Bebida>(`${this.url}/${id}`)
+  }
+
+  createBebida(bebida:Bebida):Observable<Bebida>{
+    return this.http.post<Bebida>(this.url,bebida,{headers:this.httpHeaders})
+  }
+
+  updateBebida(bebida:Bebida):Observable<Bebida>{
+    return this.http.put<Bebida>(`${this.url}/${bebida.id}`,bebida,{headers: this.httpHeaders});
+  }
+
+  updateEstadoBebida(id):Observable<Bebida>{
+    return this.http.put<Bebida>(`${this.url}/estatus/${id}`,{headers: this.httpHeaders});
+  }
 }

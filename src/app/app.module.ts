@@ -20,11 +20,15 @@ import {PlatoService} from '../app/CRUDS/plato/plato.service';
 import {GuarnicionService} from '../app/CRUDS/guarnicion/guarnicion.service';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/Mesa', pathMatch: 'full'},
+  {path: '', redirectTo: '/Mesas', pathMatch: 'full'},
   {path:'Mesas', component: MesaComponent},
+  {path:'Mesas/form', component: MesaComponent},
   {path:'Bebidas', component: BebidaComponent},
+  {path:'Bebidas/form', component: BebidaComponent},
   {path:'Platos', component: PlatoComponent},
-  {path:'Guarniciones', component: GuarnicionComponent}
+  {path:'Platos/form', component: PlatoComponent},
+  {path:'Guarniciones', component: GuarnicionComponent},
+  {path:'Guarniciones/form', component: GuarnicionComponent}
 ];
 
 @NgModule({

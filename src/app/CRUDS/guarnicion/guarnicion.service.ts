@@ -17,4 +17,21 @@ export class GuarnicionService {
   getGuarniciones(): Observable<Guarnicion[]>{
     return this.http.get<Guarnicion[]>(this.url);
   }
+
+  getGuarnicion(id):Observable<Guarnicion>{
+    return this.http.get<Guarnicion>(`${this.url}/${id}`);
+  }
+
+  createGuarnicion(guarnicion:Guarnicion):Observable<Guarnicion>{
+    return this.http.post<Guarnicion>(this.url,guarnicion,{headers:this.httpHeaders})
+  }
+
+  updateGuarnicion(guarnicion:Guarnicion):Observable<Guarnicion>{
+    return this.http.put<Guarnicion>(`${this.url}/${guarnicion.id}`,guarnicion,{headers: this.httpHeaders});
+  }
+
+  updateEstadoGuarnicion(id):Observable<Guarnicion>{
+    return this.http.put<Guarnicion>(`${this.url}/estatus/${id}`,{headers: this.httpHeaders});
+  }
+
 }

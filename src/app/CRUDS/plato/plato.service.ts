@@ -17,4 +17,20 @@ export class PlatoService {
   getPlatos(): Observable<Plato[]>{
     return this.http.get<Plato[]>(this.url);
   }
+
+  getPlato(id):Observable<Plato>{
+    return this.http.get<Plato>(`${this.url}/${id}`);
+  }
+
+  createPlato(plato:Plato):Observable<Plato>{
+    return this.http.post<Plato>(this.url,plato,{headers:this.httpHeaders})
+  }
+
+  updatePlato(plato:Plato):Observable<Plato>{
+    return this.http.put<Plato>(`${this.url}/${plato.id}`,plato,{headers: this.httpHeaders});
+  }
+
+  updateEstadoPlato(id):Observable<Plato>{
+    return this.http.put<Plato>(`${this.url}/estatus/${id}`,{headers: this.httpHeaders});
+  }
 }

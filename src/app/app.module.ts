@@ -19,6 +19,8 @@ import {BebidaService} from './CRUDS/bebida/bebida-service/bebida.service';
 import {PlatoService} from './CRUDS/plato/plato-service/plato.service';
 import {GuarnicionService} from './CRUDS/guarnicion/guarnicion-service/guarnicion.service';
 import { PedidoComponent } from './CRUDS/pedido/pedido.component';
+import { HacerPedidoComponent } from './CORE/hacer-pedido/hacer-pedido.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {path: '', redirectTo: '/Mesas', pathMatch: 'full'},
@@ -41,14 +43,16 @@ const routes: Routes = [
     BebidaComponent,
     PlatoComponent,
     GuarnicionComponent,
-    PedidoComponent
+    PedidoComponent,
+    HacerPedidoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule
   ],
   providers: [
     MesaService,

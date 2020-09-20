@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Bebida} from './bebida';
-import {BebidaService} from './bebida.service';
+import {Bebida} from './bebida-class/bebida';
+import {BebidaService} from './bebida-service/bebida.service';
 import {Router} from '@angular/router';
 import swal from 'sweetalert2';
 

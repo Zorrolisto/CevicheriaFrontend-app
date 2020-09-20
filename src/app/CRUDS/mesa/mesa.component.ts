@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import swal from 'sweetalert2';
-import {Mesa} from './mesa';
-import {MesaService} from './mesa.service';
+import {Mesa} from './mesa-class/mesa';
+import {MesaService} from './mesa-service/mesa.service';
 import {Router} from '@angular/router'
 
 @Component({

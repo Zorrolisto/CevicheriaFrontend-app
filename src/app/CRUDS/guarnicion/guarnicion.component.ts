@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Guarnicion} from './guarnicion';
-import {GuarnicionService} from './guarnicion.service';
+import {Guarnicion} from './guarnicion-class/guarnicion';
+import {GuarnicionService} from './guarnicion-service/guarnicion.service';
 import {Router} from '@angular/router';
 import swal from 'sweetalert2';
 

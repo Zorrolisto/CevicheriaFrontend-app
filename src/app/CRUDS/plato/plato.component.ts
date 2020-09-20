@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Plato} from './plato';
-import {PlatoService} from './plato.service';
+import {Plato} from './plato-class/plato';
+import {PlatoService} from './plato-service/plato.service';
 import {Router} from '@angular/router';
 import swal from 'sweetalert2';
 

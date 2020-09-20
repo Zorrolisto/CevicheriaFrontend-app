@@ -14,10 +14,10 @@ import { BebidaComponent } from './CRUDS/bebida/bebida.component';
 import { PlatoComponent } from './CRUDS/plato/plato.component';
 import { GuarnicionComponent } from './CRUDS/guarnicion/guarnicion.component';
 
-import {MesaService} from '../app/CRUDS/mesa/mesa.service';
-import {BebidaService} from '../app/CRUDS/bebida/bebida.service';
-import {PlatoService} from '../app/CRUDS/plato/plato.service';
-import {GuarnicionService} from '../app/CRUDS/guarnicion/guarnicion.service';
+import {MesaService} from './CRUDS/mesa/mesa-service/mesa.service';
+import {BebidaService} from './CRUDS/bebida/bebida-service/bebida.service';
+import {PlatoService} from './CRUDS/plato/plato-service/plato.service';
+import {GuarnicionService} from './CRUDS/guarnicion/guarnicion-service/guarnicion.service';
 
 const routes: Routes = [
   {path: '', redirectTo: '/Mesas', pathMatch: 'full'},

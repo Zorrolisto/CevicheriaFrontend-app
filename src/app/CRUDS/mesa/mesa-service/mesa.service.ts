@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Mesa } from './mesa'
+import { Mesa } from '../mesa-class/mesa'
 
  
 import {Observable, of} from 'rxjs';
@@ -10,7 +10,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class MesaService {
 
-  private url:string = 'http://localhost:8085/cevicheria/mesas'
+  private url:string = 'http://localhost:8080/cevicheria/mesas'
 
   private httpHeaders = new  HttpHeaders({'Content-Type': 'application/json'})
 

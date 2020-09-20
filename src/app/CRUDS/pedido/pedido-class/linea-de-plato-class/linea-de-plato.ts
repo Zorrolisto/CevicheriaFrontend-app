@@ -4,6 +4,6 @@ export class LineaDePlato {
     id:number;
     plato:Plato;
     cantidad:number;
-    descripcion:number;
-    preferencia:string;
+    descripcion:string;
+    preferencia:boolean;
 }

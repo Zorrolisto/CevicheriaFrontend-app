@@ -18,6 +18,7 @@ import {MesaService} from './CRUDS/mesa/mesa-service/mesa.service';
 import {BebidaService} from './CRUDS/bebida/bebida-service/bebida.service';
 import {PlatoService} from './CRUDS/plato/plato-service/plato.service';
 import {GuarnicionService} from './CRUDS/guarnicion/guarnicion-service/guarnicion.service';
+import { PedidoComponent } from './CRUDS/pedido/pedido.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/Mesas', pathMatch: 'full'},
@@ -39,7 +40,8 @@ const routes: Routes = [
     MesaComponent,
     BebidaComponent,
     PlatoComponent,
-    GuarnicionComponent
+    GuarnicionComponent,
+    PedidoComponent
   ],
   imports: [
     BrowserModule,

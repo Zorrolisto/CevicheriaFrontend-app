@@ -1,9 +1,9 @@
 <h1 mat-dialog-title>Escoger Guarnicion: </h1>
 <div mat-dialog-content>   
-    <mat-form-field class="form-group col-sm-12" appearance="fill">
+    <mat-form-field class="col-sm-12" appearance="fill">
         <mat-label>Nombre</mat-label>
-          <mat-select [(ngModel)]="data.guarnicion">
-          <mat-option *ngFor="let guarnicion of Guarniciones" [value]="guarnicion">
+          <mat-select  [(ngModel)]="data.guarnicion.id" (selectionChange)="onSelectValueChangeGuarnicion()">
+          <mat-option *ngFor="let guarnicion of Guarniciones" [value]="guarnicion.id">
               {{guarnicion.nombre}}
           </mat-option>
         </mat-select>
@@ -20,6 +20,11 @@
 <label *ngIf="data.guarnicion">{{data.guarnicion.nombre}}</label>
 <label *ngIf="data.cantidad">{{data.cantidad}}</label>
 <label *ngIf="data.descripcion">{{data.descripcion}}</label>
-<div mat-dialog-actions> 
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>
+<div class="row">   
+    <div mat-dialog-actions *ngIf="data.guarnicion && data.cantidad"> 
+        <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>
+    </div>
+    <div mat-dialog-actions *ngIf="puedeCerrar">
+        <button mat-button (click)="onNoClick()">Cerrar</button>
+    </div>  
 </div>

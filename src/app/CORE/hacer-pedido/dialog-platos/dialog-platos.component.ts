@@ -12,22 +12,45 @@ import { PlatoService } from 'src/app/CRUDS/plato/plato-service/plato.service';
 export class DialogPlatosComponent implements OnInit {
 
   Platos: Plato[];
+  preferencia: string;
+  puedeCerrar: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<DialogPlatosComponent>,
     private platoService: PlatoService,
-    @Inject(MAT_DIALOG_DATA) public data:LineaDePlato
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public data:LineaDePlato)
+  {
+    dialogRef.disableClose = true;
+  }
 
   ngOnInit(): void { 
-    if(this.data){
-
+    if(this.data){ 
+      this.preferencia = this.data.preferencia.toString();
     }else{
       this.data = new LineaDePlato(); 
+      this.data.plato = new Plato();
+      this.puedeCerrar = true;
     }
     this.platoService.getPlatos().subscribe(
       Platos => this.Platos = Platos
     );
+  }
+
+  onSelectValueChangePlato(){
+    for(let plato of this.Platos){
+      if(plato.id == this.data.plato.id){
+        this.data.plato = plato;
+      }
+    }
+  }
+
+  onSelectValueChangePreferencia(){
+    if(this.preferencia=="true"){
+      this.data.preferencia = true;
+    }
+    if(this.preferencia=="false"){
+      this.data.preferencia = false;
+    }
   }
 
   onNoClick(): void {

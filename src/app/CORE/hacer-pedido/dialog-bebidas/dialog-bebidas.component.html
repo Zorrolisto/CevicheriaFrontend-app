@@ -2,8 +2,8 @@
 <div mat-dialog-content>   
     <mat-form-field class="form-group col-sm-12" appearance="fill">
         <mat-label>Nombre</mat-label>
-          <mat-select [(ngModel)]="data.bebida">
-          <mat-option *ngFor="let bebida of Bebidas" [value]="bebida">
+          <mat-select [(ngModel)]="data.bebida.id" (selectionChange)="onSelectValueChangeBebida()">
+          <mat-option *ngFor="let bebida of Bebidas" [value]="bebida.id">
               {{bebida.nombre}}
             <label *ngIf="bebida.litraje">- {{bebida.litraje}}</label>
           </mat-option>
@@ -11,7 +11,7 @@
     </mat-form-field>
     <mat-form-field class="form-group col-sm-6" appearance="fill">
       <mat-label>Temperatura</mat-label>
-        <mat-select [(ngModel)]="data.temperatura">
+        <mat-select [(ngModel)]="temperatura" (selectionChange)="onSelectValueChangeTemperatura()">
         <mat-option value="true">Helada</mat-option>
         <mat-option value="false">Normal</mat-option>
       </mat-select>
@@ -22,8 +22,13 @@
     </mat-form-field> 
 </div> 
 <label *ngIf="data.bebida">{{data.bebida.nombre}}</label>
-<label *ngIf="data.temperatura">{{data.temperatura}}</label>
+<label *ngIf="data.temperatura!=null">{{data.temperatura}}</label>
 <label *ngIf="data.cantidad">{{data.cantidad}}</label>
-<div mat-dialog-actions> 
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>
+<div class="row">
+  <div mat-dialog-actions *ngIf="data.bebida && data.temperatura!=null && data.cantidad"> 
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>
+  </div>
+  <div mat-dialog-actions *ngIf="puedeCerrar">
+      <button mat-button (click)="cerrar()">Cerrar</button>
+  </div>
 </div>

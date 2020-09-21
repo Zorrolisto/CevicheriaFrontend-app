@@ -15,6 +15,7 @@ import { LineaDeBebida } from 'src/app/CRUDS/pedido/pedido-class/linea-de-bebida
 import { LineaDePlato } from 'src/app/CRUDS/pedido/pedido-class/linea-de-plato-class/linea-de-plato';
 import { LineaDeGuarnicion } from 'src/app/CRUDS/pedido/pedido-class/linea-de-guarnicion-class/linea-de-guarnicion';
 import { Pedido } from 'src/app/CRUDS/pedido/pedido-class/pedido';
+import { DialogEditarPedidoComponent } from './dialog-editar-pedido/dialog-editar-pedido.component';
 
 @Component({
   selector: 'app-hacer-pedido',
@@ -59,17 +60,29 @@ export class HacerPedidoComponent implements OnInit {
           this.Pedido.lineaDeBebidas = [new LineaDeBebida()];
           this.Pedido.lineaDeBebidas.pop();
           this.Pedido.lineaDeBebidas.push(result);
+          this.Pedido.precioTotal = this.Pedido.precioTotal + result.bebida.precio * result.cantidad;
         }else{
           this.Pedido.lineaDeBebidas.push(result);
+          this.Pedido.precioTotal = this.Pedido.precioTotal + result.bebida.precio * result.cantidad;
         }
       }
     });
   }
   abrirDialogParaEditarBebida(lineaDeBebidaParaEditar:LineaDeBebida){ 
+    let precio = lineaDeBebidaParaEditar.bebida.precio;
+    let cantidad = lineaDeBebidaParaEditar.cantidad; 
+    let bebida = lineaDeBebidaParaEditar.bebida;
+    let temperatura = lineaDeBebidaParaEditar.temperatura;
     const dialogRef = this.dialog.open(DialogBebidasComponent, {
       width: '500px',
       data: lineaDeBebidaParaEditar,
     }); 
+    dialogRef.afterClosed().subscribe(result => { 
+      if(precio!=result.bebida.precio || cantidad!=result.cantidad){
+        this.Pedido.precioTotal = this.Pedido.precioTotal - precio * cantidad;
+        this.Pedido.precioTotal = this.Pedido.precioTotal + result.bebida.precio * result.cantidad;
+      }
+    });
   }
   eliminarBebida(lineaDeBebidaParaEliminar:LineaDeBebida){
     for(let linea of this.Pedido.lineaDeBebidas){
@@ -80,7 +93,8 @@ export class HacerPedidoComponent implements OnInit {
             ldb => ldb !== linea
           );
       }
-    }
+    } 
+    this.Pedido.precioTotal = this.Pedido.precioTotal - lineaDeBebidaParaEliminar.bebida.precio * lineaDeBebidaParaEliminar.cantidad;
   }
 
   
@@ -96,17 +110,27 @@ export class HacerPedidoComponent implements OnInit {
           this.Pedido.lineaDePlatos = [new LineaDePlato()];
           this.Pedido.lineaDePlatos.pop();
           this.Pedido.lineaDePlatos.push(result);
+          this.Pedido.precioTotal = this.Pedido.precioTotal + result.plato.precio * result.cantidad;
         }else{
           this.Pedido.lineaDePlatos.push(result);
+          this.Pedido.precioTotal = this.Pedido.precioTotal + result.plato.precio * result.cantidad;
         }
       }
     });
   }
   abrirDialogParaEditarPlato(lineaDePlatoParaEditar:LineaDePlato){ 
+    let precio = lineaDePlatoParaEditar.plato.precio;
+    let cantidad = lineaDePlatoParaEditar.cantidad; 
     const dialogRef = this.dialog.open(DialogPlatosComponent, {
       width: '500px',
       data: lineaDePlatoParaEditar,
     }); 
+    dialogRef.afterClosed().subscribe(result => { 
+      if(precio!=result.plato.precio || cantidad!=result.cantidad){
+        this.Pedido.precioTotal = this.Pedido.precioTotal - precio * cantidad;
+        this.Pedido.precioTotal = this.Pedido.precioTotal + result.plato.precio * result.cantidad;
+      }
+    });
   }
   eliminarPlato(lineaDePlatoParaEliminar:LineaDePlato){
     for(let linea of this.Pedido.lineaDePlatos){
@@ -119,6 +143,7 @@ export class HacerPedidoComponent implements OnInit {
           );
       }
     }
+    this.Pedido.precioTotal = this.Pedido.precioTotal - lineaDePlatoParaEliminar.plato.precio * lineaDePlatoParaEliminar.cantidad;
   }
  
   //LINEA DE GUARNICIONES --
@@ -133,17 +158,27 @@ export class HacerPedidoComponent implements OnInit {
           this.Pedido.lineaDeGuarniciones = [new LineaDeGuarnicion()];
           this.Pedido.lineaDeGuarniciones.pop();
           this.Pedido.lineaDeGuarniciones.push(result);
+          this.Pedido.precioTotal = this.Pedido.precioTotal + result.guarnicion.precio * result.cantidad;
         }else{
           this.Pedido.lineaDeGuarniciones.push(result);
+          this.Pedido.precioTotal = this.Pedido.precioTotal + result.guarnicion.precio * result.cantidad;
         }
       }
     });
   }
-  abrirDialogParaEditarGuarnicion(lineaDeGuarnicionParaEditar:LineaDeGuarnicion){ 
+  abrirDialogParaEditarGuarnicion(lineaDeGuarnicionParaEditar:LineaDeGuarnicion){
+    let precio = lineaDeGuarnicionParaEditar.guarnicion.precio;
+    let cantidad = lineaDeGuarnicionParaEditar.cantidad;  
     const dialogRef = this.dialog.open(DialogGuarnicionesComponent, {
       width: '500px',
       data: lineaDeGuarnicionParaEditar,
     }); 
+    dialogRef.afterClosed().subscribe(result => {  
+      if(precio!=result.guarnicion.precio || cantidad!=result.cantidad){
+        this.Pedido.precioTotal = this.Pedido.precioTotal - precio * cantidad;
+        this.Pedido.precioTotal = this.Pedido.precioTotal + result.guarnicion.precio * result.cantidad;
+      }
+    });
   }
   eliminarGuarnicion(lineaDeGuarnicionParaEliminar:LineaDeGuarnicion){
     for(let linea of this.Pedido.lineaDeGuarniciones){
@@ -155,13 +190,15 @@ export class HacerPedidoComponent implements OnInit {
           );
       }
     }
+    this.Pedido.precioTotal = this.Pedido.precioTotal - lineaDeGuarnicionParaEliminar.guarnicion.precio * lineaDeGuarnicionParaEliminar.cantidad;
   }
 
   abrirDialogParaEditarPedido(){
-    const dialogRef = this.dialog.open(DialogGuarnicionesComponent, {
+    let cliente = this.Pedido.cliente;
+    const dialogRef = this.dialog.open(DialogEditarPedidoComponent, {
       width: '500px',
       data: this.Pedido,
-    }); 
+    });  
   }
 
   eliminar(){
@@ -189,9 +226,9 @@ export class HacerPedidoComponent implements OnInit {
       pedido=>{
         swal.fire('Pedido Guardado',
               `El pedido de ${pedido.cliente} se actualizado con éxito`,'success')
-            this.goto("../mesas")
       }
     );
+    this.goto("../Mesas");
   }
 
   public goto(url){

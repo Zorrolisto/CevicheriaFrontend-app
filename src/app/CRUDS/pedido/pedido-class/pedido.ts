@@ -8,6 +8,7 @@ export class Pedido {
    cliente: string;
    precioTotal:number;
    estado:boolean;
+   preferencia:boolean;
    fecha:Date;
    mesa:Mesa;
    lineaDePlatos:LineaDePlato[]; 

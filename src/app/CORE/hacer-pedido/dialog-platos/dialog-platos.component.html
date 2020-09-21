@@ -2,15 +2,15 @@
 <div mat-dialog-content>   
     <mat-form-field class="form-group col-sm-12" appearance="fill">
         <mat-label>Nombre</mat-label>
-          <mat-select [(ngModel)]="data.plato">
-          <mat-option *ngFor="let plato of Platos" [value]="plato">
+          <mat-select [(ngModel)]="data.plato.id" (selectionChange)="onSelectValueChangePlato()">
+          <mat-option *ngFor="let plato of Platos" [value]="plato.id">
               {{plato.nombre}}
           </mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field class="form-group col-sm-6" appearance="fill">
       <mat-label>Preferencia</mat-label>
-        <mat-select [(ngModel)]="data.preferencia">
+        <mat-select [(value)]="preferencia" (selectionChange)="onSelectValueChangePreferencia()">
         <mat-option value="true">Comer acá</mat-option>
         <mat-option value="false">Para llevar</mat-option>
       </mat-select>
@@ -25,9 +25,14 @@
     </mat-form-field>
 </div> 
 <label *ngIf="data.plato">{{data.plato.nombre}}</label>
-<label *ngIf="data.preferencia">{{data.preferencia}}</label>
+<label *ngIf="data.preferencia!=null">{{data.preferencia}}</label>
 <label *ngIf="data.cantidad">{{data.cantidad}}</label>
 <label *ngIf="data.descripcion">{{data.descripcion}}</label>
-<div mat-dialog-actions> 
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>
+<div class="row">
+  <div mat-dialog-actions *ngIf="data.plato && data.preferencia!=null && data.cantidad"> 
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>
+  </div>
+  <div mat-dialog-actions *ngIf="puedeCerrar">
+      <button mat-button (click)="onNoClick()">Cerrar</button>
+  </div>  
 </div>

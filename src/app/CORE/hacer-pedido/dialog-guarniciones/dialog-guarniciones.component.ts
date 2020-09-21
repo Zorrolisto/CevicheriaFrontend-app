@@ -12,22 +12,35 @@ import { LineaDeGuarnicion } from 'src/app/CRUDS/pedido/pedido-class/linea-de-gu
 export class DialogGuarnicionesComponent implements OnInit {
 
   Guarniciones: Guarnicion[];
+  puedeCerrar: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<DialogGuarnicionesComponent>,
     private guarnicionesService: GuarnicionService,
-    @Inject(MAT_DIALOG_DATA) public data:LineaDeGuarnicion
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public data:LineaDeGuarnicion)
+  {
+    dialogRef.disableClose = true;
+  }
 
   ngOnInit(): void { 
     if(this.data){
 
     }else{
       this.data = new LineaDeGuarnicion(); 
+      this.data.guarnicion = new Guarnicion();
+      this.puedeCerrar = true;
     }
     this.guarnicionesService.getGuarniciones().subscribe(
       Guarniciones => this.Guarniciones = Guarniciones
     );
+  }
+
+  onSelectValueChangeGuarnicion(){
+    for(let guarnicion of this.Guarniciones){
+      if(guarnicion.id == this.data.guarnicion.id){
+        this.data.guarnicion = guarnicion;
+      }
+    }
   }
 
   onNoClick(): void {

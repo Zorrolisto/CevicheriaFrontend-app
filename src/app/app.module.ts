@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,6 +31,7 @@ import {BebidaService} from './CRUDS/bebida/bebida-service/bebida.service';
 import {PlatoService} from './CRUDS/plato/plato-service/plato.service';
 import {GuarnicionService} from './CRUDS/guarnicion/guarnicion-service/guarnicion.service';
 import {PedidoService} from './CRUDS/pedido/pedido-service/pedido.service';
+import { DialogEditarPedidoComponent } from './CORE/hacer-pedido/dialog-editar-pedido/dialog-editar-pedido.component';
 
 //PARA QUE SON LA ROUTES FORM?
 const routes: Routes = [
@@ -60,11 +61,13 @@ const routes: Routes = [
     DialogBebidasComponent,
     DialogPlatosComponent,
     DialogGuarnicionesComponent,
+    DialogEditarPedidoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,

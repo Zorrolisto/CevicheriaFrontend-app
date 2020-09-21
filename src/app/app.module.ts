@@ -4,8 +4,9 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
@@ -13,15 +14,25 @@ import { MesaComponent } from './CRUDS/mesa/mesa.component';
 import { BebidaComponent } from './CRUDS/bebida/bebida.component';
 import { PlatoComponent } from './CRUDS/plato/plato.component';
 import { GuarnicionComponent } from './CRUDS/guarnicion/guarnicion.component';
+import { PedidoComponent } from './CRUDS/pedido/pedido.component';
+import { HacerPedidoComponent } from './CORE/hacer-pedido/hacer-pedido.component';
+import { DialogBebidasComponent } from './CORE/hacer-pedido/dialog-bebidas/dialog-bebidas.component';
+import { DialogPlatosComponent } from './CORE/hacer-pedido/dialog-platos/dialog-platos.component';
+import { DialogGuarnicionesComponent } from './CORE/hacer-pedido/dialog-guarniciones/dialog-guarniciones.component';
+
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
 
 import {MesaService} from './CRUDS/mesa/mesa-service/mesa.service';
 import {BebidaService} from './CRUDS/bebida/bebida-service/bebida.service';
 import {PlatoService} from './CRUDS/plato/plato-service/plato.service';
 import {GuarnicionService} from './CRUDS/guarnicion/guarnicion-service/guarnicion.service';
-import { PedidoComponent } from './CRUDS/pedido/pedido.component';
-import { HacerPedidoComponent } from './CORE/hacer-pedido/hacer-pedido.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {PedidoService} from './CRUDS/pedido/pedido-service/pedido.service';
 
+//PARA QUE SON LA ROUTES FORM?
 const routes: Routes = [
   {path: '', redirectTo: '/Mesas', pathMatch: 'full'},
   {path:'Mesas', component: MesaComponent},
@@ -31,7 +42,8 @@ const routes: Routes = [
   {path:'Platos', component: PlatoComponent},
   {path:'Platos/form', component: PlatoComponent},
   {path:'Guarniciones', component: GuarnicionComponent},
-  {path:'Guarniciones/form', component: GuarnicionComponent}
+  {path:'Guarniciones/form', component: GuarnicionComponent},
+  {path:'tomar-pedido/:id', component: HacerPedidoComponent}
 ];
 
 @NgModule({
@@ -44,7 +56,10 @@ const routes: Routes = [
     PlatoComponent,
     GuarnicionComponent,
     PedidoComponent,
-    HacerPedidoComponent
+    HacerPedidoComponent,
+    DialogBebidasComponent,
+    DialogPlatosComponent,
+    DialogGuarnicionesComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,13 +67,19 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatSelectModule,
   ],
   providers: [
     MesaService,
     PlatoService,
     BebidaService,
-    GuarnicionService
+    GuarnicionService,
+    PedidoService
   ],
   bootstrap: [AppComponent]
 })

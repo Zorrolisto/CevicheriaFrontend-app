@@ -5,6 +5,7 @@ import { LineaDePlato } from './linea-de-plato-class/linea-de-plato';
 
 export class Pedido {
    id:number;
+   cliente: string;
    precioTotal:number;
    estado:boolean;
    fecha:Date;

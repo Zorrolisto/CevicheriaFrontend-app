@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Escoger Bebida: </h1>
+<div mat-dialog-content>   
+    <mat-form-field class="form-group col-sm-12" appearance="fill">
+        <mat-label>Nombre</mat-label>
+          <mat-select [(ngModel)]="data.bebida">
+          <mat-option *ngFor="let bebida of Bebidas" [value]="bebida">
+              {{bebida.nombre}}
+            <label *ngIf="bebida.litraje">- {{bebida.litraje}}</label>
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-group col-sm-6" appearance="fill">
+      <mat-label>Temperatura</mat-label>
+        <mat-select [(ngModel)]="data.temperatura">
+        <mat-option value="true">Helada</mat-option>
+        <mat-option value="false">Normal</mat-option>
+      </mat-select>
+    </mat-form-field> 
+    <mat-form-field  class="col-lg-6" appearance="fill">
+        <mat-label for="cantidad" class="col-form-label ">Cantidad</mat-label>
+        <input matInput type="number" [(ngModel)]="data.cantidad"  name="cantidad">
+    </mat-form-field> 
+</div> 
+<label *ngIf="data.bebida">{{data.bebida.nombre}}</label>
+<label *ngIf="data.temperatura">{{data.temperatura}}</label>
+<label *ngIf="data.cantidad">{{data.cantidad}}</label>
+<div mat-dialog-actions> 
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>
+</div>

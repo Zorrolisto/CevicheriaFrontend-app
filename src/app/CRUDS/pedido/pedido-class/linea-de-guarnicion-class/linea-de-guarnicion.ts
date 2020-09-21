@@ -4,5 +4,5 @@ export class LineaDeGuarnicion {
     id:number;
     guarnicion:Guarnicion;
     cantidad:number;
-    descriopcion:string;
+    descripcion:string;
 }

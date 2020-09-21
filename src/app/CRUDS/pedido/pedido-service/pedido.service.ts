@@ -38,10 +38,10 @@ export class PedidoService {
   }
 
   updatePedido(pedido:Pedido):Observable<Pedido>{
-    return this.http.put<Pedido>(`${this.url}/${pedido.id}`,Pedido,{headers: this.httpHeaders});
-  }
+    return this.http.put<Pedido>(`${this.url}/${pedido.id}`,pedido,{headers: this.httpHeaders});
+  } 
 
   deletePedido(id:number):Observable<Pedido>{
-    return this.http.put<Pedido>(`${this.url}/${id}`,{headers: this.httpHeaders});
+    return this.http.delete<Pedido>(`${this.url}/${id}`,{headers: this.httpHeaders});
   }
 }

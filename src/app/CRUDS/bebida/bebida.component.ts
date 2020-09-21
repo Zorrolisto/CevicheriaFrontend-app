@@ -67,7 +67,7 @@ export class BebidaComponent implements OnInit {
       }
     )
   }
-
+ //FIX: PASAR BEBIDA EN VEZ DE ID
   cambiarEstadoBebida(id){
     this.bebidaService.getBebida(id).subscribe(
       bebida =>{

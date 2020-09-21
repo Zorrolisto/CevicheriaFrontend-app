@@ -1,1 +1,55 @@
-<p>hacer-pedido works!</p>
+<div class="container">
+    <h4>{{Pedido.cliente}}</h4>
+    <h4>{{Pedido.precioTotal}}</h4>
+    <h4>{{Pedido.estado}}</h4>
+    <h4>{{Pedido.fecha}}</h4>
+    <h4>{{Pedido.mesa.codigo}}</h4>
+    
+    <button (click)="abrirDialogParaEditarPedido()">Editar</button>
+    <button (click)="eliminar()">Eliminar</button>
+</div>
+
+<button mat-raised-button (click)="openDialogBebidas()">Agregar Bebida</button>
+<ol>  
+    <li *ngFor="let lineaDeBebida of Pedido.lineaDeBebidas">
+      Nombre de Bebida: <i>{{lineaDeBebida.bebida.nombre}}</i>
+                    <br>
+      Temperatura: <i>{{lineaDeBebida.temperatura}}</i>
+                    <br>
+      Cantidad: <i>{{lineaDeBebida.cantidad}}</i>
+                    <br>  
+      <button (click)="abrirDialogParaEditarBebida(lineaDeBebida)">editar</button>
+      <button (click)="eliminarBebida(lineaDeBebida)">eliminar</button>
+    </li>
+</ol>
+
+<button mat-raised-button (click)="openDialogPlatos()">Agregar Plato</button>
+<ol>  
+    <li *ngFor="let lineaDePlato of Pedido.lineaDePlatos">
+      Nombre de Plato: <i>{{lineaDePlato.plato.nombre}}</i>
+                    <br>
+      Preferencia: <i>{{lineaDePlato.preferencia}}</i>
+                    <br>
+      Cantidad: <i>{{lineaDePlato.cantidad}}</i>
+                    <br>  
+      Descripcion: <i>{{lineaDePlato.descripcion}}</i>
+                    <br>  
+      <button (click)="abrirDialogParaEditarPlato(lineaDePlato)">editar</button>
+      <button (click)="eliminarPlato(lineaDePlato)">eliminar</button>
+    </li>
+</ol>
+
+<button mat-raised-button (click)="openDialogGuarniciones()">Agregar Guarnicion</button>
+<ol>  
+    <li *ngFor="let lineaDeGuarnicion of Pedido.lineaDeGuarniciones">
+      Nombre de Guarnicion: <i>{{lineaDeGuarnicion.guarnicion.nombre}}</i>
+                    <br>
+      Cantidad: <i>{{lineaDeGuarnicion.cantidad}}</i>
+                    <br>  
+      Descripcion: <i>{{lineaDeGuarnicion.descripcion}}</i>
+                    <br>  
+      <button (click)="abrirDialogParaEditarGuarnicion(lineaDeGuarnicion)">editar</button>
+      <button (click)="eliminarGuarnicion(lineaDeGuarnicion)">eliminar</button>
+    </li>
+</ol>
+<button (click)="guardar()">Guardar</button>

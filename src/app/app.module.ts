@@ -32,6 +32,7 @@ import {PlatoService} from './CRUDS/plato/plato-service/plato.service';
 import {GuarnicionService} from './CRUDS/guarnicion/guarnicion-service/guarnicion.service';
 import {PedidoService} from './CRUDS/pedido/pedido-service/pedido.service';
 import { DialogEditarPedidoComponent } from './CORE/hacer-pedido/dialog-editar-pedido/dialog-editar-pedido.component';
+import { DialogVehiculoComponent } from './models-crud/forms/form-papeleta/dialog-vehiculo/dialog-vehiculo.component';
 
 //PARA QUE SON LA ROUTES FORM?
 const routes: Routes = [
@@ -62,6 +63,7 @@ const routes: Routes = [
     DialogPlatosComponent,
     DialogGuarnicionesComponent,
     DialogEditarPedidoComponent,
+    DialogVehiculoComponent,
   ],
   imports: [
     BrowserModule,

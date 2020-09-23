@@ -59,12 +59,9 @@ export class HacerPedidoComponent implements OnInit {
         if(this.Pedido.lineaDeBebidas==null){ 
           this.Pedido.lineaDeBebidas = [new LineaDeBebida()];
           this.Pedido.lineaDeBebidas.pop();
-          this.Pedido.lineaDeBebidas.push(result);
-          this.Pedido.precioTotal = this.Pedido.precioTotal + result.bebida.precio * result.cantidad;
-        }else{
-          this.Pedido.lineaDeBebidas.push(result);
-          this.Pedido.precioTotal = this.Pedido.precioTotal + result.bebida.precio * result.cantidad;
         }
+          this.Pedido.lineaDeBebidas.push(result);
+          this.Pedido.precioTotal = this.Pedido.precioTotal + result.bebida.precio * result.cantidad;
       }
     });
   }

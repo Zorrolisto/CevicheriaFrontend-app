@@ -19,6 +19,7 @@ import { HacerPedidoComponent } from './CORE/hacer-pedido/hacer-pedido.component
 import { DialogBebidasComponent } from './CORE/hacer-pedido/dialog-bebidas/dialog-bebidas.component';
 import { DialogPlatosComponent } from './CORE/hacer-pedido/dialog-platos/dialog-platos.component';
 import { DialogGuarnicionesComponent } from './CORE/hacer-pedido/dialog-guarniciones/dialog-guarniciones.component';
+import { DialogEditarPedidoComponent } from './CORE/hacer-pedido/dialog-editar-pedido/dialog-editar-pedido.component'; 
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -34,8 +35,6 @@ import {BebidaService} from './CRUDS/bebida/bebida-service/bebida.service';
 import {PlatoService} from './CRUDS/plato/plato-service/plato.service';
 import {GuarnicionService} from './CRUDS/guarnicion/guarnicion-service/guarnicion.service';
 import {PedidoService} from './CRUDS/pedido/pedido-service/pedido.service';
-import { DialogEditarPedidoComponent } from './CORE/hacer-pedido/dialog-editar-pedido/dialog-editar-pedido.component';
-import { DialogVehiculoComponent } from './models-crud/forms/form-papeleta/dialog-vehiculo/dialog-vehiculo.component';
 
 //PARA QUE SON LA ROUTES FORM?
 const routes: Routes = [
@@ -65,8 +64,7 @@ const routes: Routes = [
     DialogBebidasComponent,
     DialogPlatosComponent,
     DialogGuarnicionesComponent,
-    DialogEditarPedidoComponent,
-    DialogVehiculoComponent,
+    DialogEditarPedidoComponent, 
   ],
   imports: [
     BrowserModule,

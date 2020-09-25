@@ -23,11 +23,7 @@
         <mat-label>Descripcion</mat-label>
         <textarea matInput [(ngModel)]="data.descripcion"></textarea>
     </mat-form-field>
-</div> 
-<label *ngIf="data.plato">{{data.plato.nombre}}</label>
-<label *ngIf="data.preferencia!=null">{{data.preferencia}}</label>
-<label *ngIf="data.cantidad">{{data.cantidad}}</label>
-<label *ngIf="data.descripcion">{{data.descripcion}}</label>
+</div>  
 <div class="row">
   <div mat-dialog-actions *ngIf="data.plato && data.preferencia!=null && data.cantidad"> 
     <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>

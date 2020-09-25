@@ -20,10 +20,7 @@
         <mat-label for="cantidad" class="col-form-label ">Cantidad</mat-label>
         <input matInput type="number" [(ngModel)]="data.cantidad"  name="cantidad">
     </mat-form-field> 
-</div> 
-<label *ngIf="data.bebida">{{data.bebida.nombre}}</label>
-<label *ngIf="data.temperatura!=null">{{data.temperatura}}</label>
-<label *ngIf="data.cantidad">{{data.cantidad}}</label>
+</div>  
 <div class="row">
   <div mat-dialog-actions *ngIf="data.bebida && data.temperatura!=null && data.cantidad"> 
     <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>

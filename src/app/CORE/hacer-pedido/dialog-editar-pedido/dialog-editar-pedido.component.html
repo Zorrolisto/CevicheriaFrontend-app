@@ -6,27 +6,21 @@
     </mat-form-field>  
     <mat-form-field class="form-group col-sm-6" appearance="fill">
       <mat-label>Estado</mat-label>
-        <mat-select [(ngModel)]="data.estado">
+        <mat-select [(ngModel)]="estado" (selectionChange)="onSelectValueChangeEstado()">
         <mat-option value="true">Pedido</mat-option>
         <mat-option value="false">Entregado</mat-option>
       </mat-select>
     </mat-form-field>  
     <mat-form-field class="form-group col-sm-6" appearance="fill">
       <mat-label>Preferencia</mat-label>
-        <mat-select [(ngModel)]="data.preferencia">
+        <mat-select [(ngModel)]="preferencia" (selectionChange)="onSelectValueChangePreferencia()">
         <mat-option value="true">Comer Acá</mat-option>
         <mat-option value="false">Llevar</mat-option>
       </mat-select>
     </mat-form-field> 
-</div> 
-<label *ngIf="data.cliente">{{data.cliente}}</label>
-<label *ngIf="data.estado">{{data.estado}}</label> 
-<label *ngIf="data.preferencia">{{data.preferencia}}</label> 
+</div>  
 <div class="row">
-    <div mat-dialog-actions *ngIf="data.cliente && data.estado && data.preferencia"> 
+    <div mat-dialog-actions *ngIf="data.cliente && data.estado!=null && data.preferencia!=null"> 
       <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>
-    </div>
-    <div mat-dialog-actions >
-        <button mat-button (click)="onNoClick()">Cerrar</button>
     </div>
 </div>

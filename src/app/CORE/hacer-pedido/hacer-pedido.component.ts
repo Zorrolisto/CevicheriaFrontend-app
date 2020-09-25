@@ -25,6 +25,9 @@ import { DialogEditarPedidoComponent } from './dialog-editar-pedido/dialog-edita
 export class HacerPedidoComponent implements OnInit {
   
   Pedido: Pedido; 
+  LINEADEBEBIDADETALLES:LineaDeBebida;
+  LINEADEPLATODETALLES: LineaDePlato;
+  LINEADEGUARNICIONDETALLES: LineaDeGuarnicion;
 
   constructor(private bebidaService:BebidaService,
               private platoService:PlatoService,
@@ -47,6 +50,25 @@ export class HacerPedidoComponent implements OnInit {
       } 
     })
   }
+
+  detallesBebida(linea: LineaDeBebida):void{
+    this.LINEADEBEBIDADETALLES = new LineaDeBebida();
+    this.LINEADEBEBIDADETALLES = linea;
+    this.LINEADEPLATODETALLES = null;
+    this.LINEADEGUARNICIONDETALLES = null;
+  }
+  detallesPlato(linea: LineaDePlato):void{
+    this.LINEADEPLATODETALLES = new LineaDePlato();
+    this.LINEADEPLATODETALLES = linea;
+    this.LINEADEBEBIDADETALLES = null;
+    this.LINEADEGUARNICIONDETALLES = null;
+  }
+  detallesGuarnicion(linea: LineaDeGuarnicion):void{
+    this.LINEADEGUARNICIONDETALLES = new LineaDeGuarnicion();
+    this.LINEADEGUARNICIONDETALLES = linea;
+    this.LINEADEPLATODETALLES = null;
+    this.LINEADEBEBIDADETALLES = null;
+  } 
 
   //LINEA DE BEBIDAS
   openDialogBebidas(): void {
@@ -89,6 +111,7 @@ export class HacerPedidoComponent implements OnInit {
           this.Pedido.lineaDeBebidas = this.Pedido.lineaDeBebidas.filter(
             ldb => ldb !== linea
           );
+          break;
       }
     } 
     this.Pedido.precioTotal = this.Pedido.precioTotal - lineaDeBebidaParaEliminar.bebida.precio * lineaDeBebidaParaEliminar.cantidad;
@@ -105,13 +128,10 @@ export class HacerPedidoComponent implements OnInit {
       if(result!=null){
         if(this.Pedido.lineaDePlatos==null){ 
           this.Pedido.lineaDePlatos = [new LineaDePlato()];
-          this.Pedido.lineaDePlatos.pop();
-          this.Pedido.lineaDePlatos.push(result);
-          this.Pedido.precioTotal = this.Pedido.precioTotal + result.plato.precio * result.cantidad;
-        }else{
-          this.Pedido.lineaDePlatos.push(result);
-          this.Pedido.precioTotal = this.Pedido.precioTotal + result.plato.precio * result.cantidad;
+          this.Pedido.lineaDePlatos.pop(); 
         }
+        this.Pedido.lineaDePlatos.push(result);
+        this.Pedido.precioTotal = this.Pedido.precioTotal + result.plato.precio * result.cantidad;
       }
     });
   }
@@ -138,6 +158,7 @@ export class HacerPedidoComponent implements OnInit {
           this.Pedido.lineaDePlatos = this.Pedido.lineaDePlatos.filter(
             ldp => ldp !== linea
           );
+          break;
       }
     }
     this.Pedido.precioTotal = this.Pedido.precioTotal - lineaDePlatoParaEliminar.plato.precio * lineaDePlatoParaEliminar.cantidad;
@@ -185,6 +206,7 @@ export class HacerPedidoComponent implements OnInit {
           this.Pedido.lineaDeGuarniciones = this.Pedido.lineaDeGuarniciones.filter(
             ldg => ldg !== linea
           );
+          break;
       }
     }
     this.Pedido.precioTotal = this.Pedido.precioTotal - lineaDeGuarnicionParaEliminar.guarnicion.precio * lineaDeGuarnicionParaEliminar.cantidad;

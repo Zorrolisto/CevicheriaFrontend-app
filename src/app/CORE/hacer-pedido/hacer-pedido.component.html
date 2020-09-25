@@ -1,12 +1,12 @@
 <div class="row">
-  <div class="card col-8" style="max-height: 600px; overflow-y: auto;">
+  <div class="card col-7" style="max-height: 600px; overflow-y: auto;">
     <div class="row">
       <div class="pedidos col-12 m-auto">
         <h1>
           Bebidas
         </h1>
         <div class="row">
-          <div matRipple (click)="detallesBebida(lineaDeBebida)" class="card m-2  mat-elevation-z8" style="width: 110px; border-color: rgb(60, 156, 235);" *ngFor="let lineaDeBebida of Pedido.lineaDeBebidas">
+          <div matRipple (click)="abrirDialogParaEditarBebida(lineaDeBebida)" class="card m-2  mat-elevation-z8" style="width: 120px; border-color: rgb(60, 156, 235);" *ngFor="let lineaDeBebida of Pedido.lineaDeBebidas">
             <div class="card-content  mb-3 mr-2 ml-2 pt-2 border-primary" style="height: 70px; font-weight: bold;">
               {{lineaDeBebida.bebida.nombre}}
             </div>
@@ -32,7 +32,7 @@
           Platos
         </h1>
         <div class="row">
-          <div matRipple (click)="detallesPlato(lineaDePlato)" class="card m-2 mat-elevation-z8" style="width: 110px; border-color: rgb(209, 122, 41);" *ngFor="let lineaDePlato of Pedido.lineaDePlatos">
+          <div matRipple (click)="abrirDialogParaEditarPlato(lineaDePlato)" class="card m-2 mat-elevation-z8" style="width: 120px; border-color: rgb(209, 122, 41);" *ngFor="let lineaDePlato of Pedido.lineaDePlatos">
             <div class="card-content  mb-3 mr-2 ml-2 pt-2 border-primary" style="height: 70px; font-weight: bold;">
               {{lineaDePlato.plato.nombre}}
             </div>
@@ -57,7 +57,7 @@
           Guarniciones
         </h1>
         <div class="row">
-          <div matRipple (click)="detallesGuarnicion(lineaDeGuarnicion)" class="card m-2 mat-elevation-z8" style="width: 110px; border-color: rgb(62, 170, 58);" *ngFor="let lineaDeGuarnicion of Pedido.lineaDeGuarniciones">
+          <div matRipple (click)="abrirDialogParaEditarGuarnicion(lineaDeGuarnicion)" class="card m-2 mat-elevation-z8" style="width: 120px; border-color: rgb(62, 170, 58);" *ngFor="let lineaDeGuarnicion of Pedido.lineaDeGuarniciones">
             <div class="card-content  mb-3 mr-2 ml-2 pt-2 border-primary" style="height: 70px; font-weight: bold;">
               {{lineaDeGuarnicion.guarnicion.nombre}}
             </div>
@@ -76,7 +76,7 @@
       </div>
     </div>
   </div> 
-  <div class="detalles col-4">
+  <div class="detalles col-5">
     <div class="card mat-elevation-z8">
       <div class="card-content p-4" style="font-size: 20px;min-height: 500px;">
         <div class="text-align">
@@ -98,79 +98,71 @@
             <mat-icon *ngIf="!Pedido.estado">done_outline</mat-icon>
           </div>
         </div>
-        <hr> 
-        <br>
-        <!--DETALLES BEBIDA-->
-        <div *ngIf="LINEADEBEBIDADETALLES" style="color:black;"> 
-          <div class="text-align p-2"> 
-            <span class="text-left"  style="font-weight: bold;color:rgb(60, 156, 235);">BEBIDA</span> 
-            <i class="fa fa-pencil" style="padding-left: 30%; color:rgb(60, 156, 235);" (click)="abrirDialogParaEditarBebida(LINEADEBEBIDADETALLES)"></i>
-            <i class="fas fa-trash-alt" style="padding-left: 40px; color:rgb(60, 156, 235);" (click)="eliminarBebida(LINEADEBEBIDADETALLES)"></i> 
-          </div>  
-          <br> 
-          <div>
-            <h2>
-              <label style="color: rgb(60, 156, 235);">Nombre: </label>
-              {{LINEADEBEBIDADETALLES.bebida.nombre}} <label *ngIf="LINEADEBEBIDADETALLES.bebida.litraje">{{LINEADEBEBIDADETALLES.bebida.litraje}}</label> <br>
-              <label style="color: rgb(60, 156, 235);">Cantidad: </label>
-              {{LINEADEBEBIDADETALLES.cantidad}} <br>
-              <label style="color: rgb(60, 156, 235);">Temperatura: </label>
-              <label *ngIf="LINEADEBEBIDADETALLES.temperatura">Helada</label> 
-              <label *ngIf="!LINEADEBEBIDADETALLES.temperatura">Normal</label> <br>
-              <label style="color: rgb(60, 156, 235);;">Precio por unidad: </label>
-               {{LINEADEBEBIDADETALLES.bebida.precio}} <br>
-              <label style="color: rgb(60, 156, 235);">Precio final: </label>
-               {{LINEADEBEBIDADETALLES.bebida.precio*LINEADEBEBIDADETALLES.cantidad}}
-            </h2>
+        <hr>  
+        <div style="max-height: 330px; overflow-y: auto; font-size: 40px;">
+          <!--DETALLES BEBIDA-->
+          <div *ngIf="Pedido.lineaDeBebidas" style="color:black;">  
+            <mat-accordion >
+              <mat-expansion-panel hideToggle *ngFor="let lineaDeBebida of Pedido.lineaDeBebidas" >
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="bebidas"> 
+                    {{lineaDeBebida.bebida.nombre}} <label *ngIf="lineaDeBebida.bebida.litraje">{{lineaDeBebida.bebida.litraje}}</label>
+                    ({{lineaDeBebida.cantidad}}) -- 
+                    S/{{lineaDeBebida.bebida.precio*lineaDeBebida.cantidad}}.00  
+                  </mat-panel-title> 
+                </mat-expansion-panel-header>
+                
+                <label style="color: rgb(60, 156, 235);">Temperatura: </label>
+                <label *ngIf="lineaDeBebida.temperatura">Helada</label> 
+                <label *ngIf="!lineaDeBebida.temperatura">Normal</label> <br>  
+                <div class="text-right">
+                  <i class="fas fa-trash-alt" style="color: red;" (click)="eliminarBebida(lineaDeBebida)"></i> 
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion> 
           </div>
-        </div>
-        <!--DETALLES PLATO-->
-        <div *ngIf="LINEADEPLATODETALLES"> 
-          <div class="text-align p-2"> 
-            <span class="text-left"  style="font-weight: bold;color:rgb(209, 122, 41);">PLATO</span> 
-            <i class="fa fa-pencil" style="padding-left: 30%; color:rgb(209, 122, 41);" (click)="abrirDialogParaEditarPlato(LINEADEPLATODETALLES)"></i>
-            <i class="fas fa-trash-alt" style="padding-left: 40px; color:rgb(209, 122, 41);" (click)="eliminarPlato(LINEADEPLATODETALLES)"></i> 
-          </div> 
-          <br> 
-          <div>
-            <h2>
-              <label style="color: rgb(209, 122, 41);">Nombre: </label>
-              {{LINEADEPLATODETALLES.plato.nombre}} <br>
-              <label style="color: rgb(209, 122, 41);">Cantidad: </label>
-              {{LINEADEPLATODETALLES.cantidad}} <br>
-              <label style="color: rgb(209, 122, 41);">Preferencia: </label>
-              <label *ngIf="LINEADEPLATODETALLES.preferencia">Para comer aqui.</label> 
-              <label *ngIf="!LINEADEPLATODETALLES.preferencia">Para llevar.</label> <br>
-              <label style="color: rgb(209, 122, 41);">Precio por unidad: </label>
-               {{LINEADEPLATODETALLES.plato.precio}} <br>
-               <label style="color: rgb(209, 122, 41);">Descripcion: </label>
-               {{LINEADEPLATODETALLES.descripcion}} <br>
-              <label style="color: rgb(209, 122, 41);">Precio final: </label>
-               {{LINEADEPLATODETALLES.plato.precio*LINEADEPLATODETALLES.cantidad}}
-            </h2>
+          <br>
+          <!--DETALLES PLATO-->
+          <div *ngIf="Pedido.lineaDePlatos">   
+            <mat-accordion>
+              <mat-expansion-panel hideToggle *ngFor="let lineaDePlato of Pedido.lineaDePlatos">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="platos"> 
+                    {{lineaDePlato.plato.nombre}}
+                    ({{lineaDePlato.cantidad}}) -- 
+                    S/{{lineaDePlato.plato.precio*lineaDePlato.cantidad}}.00  
+                  </mat-panel-title> 
+                </mat-expansion-panel-header> 
+                <label *ngIf="lineaDePlato.descripcion" style="color: rgb(209, 122, 41);">Descripcion: </label> 
+                <label *ngIf="lineaDePlato.descripcion">{{lineaDePlato.descripcion}} <br></label>
+                <label style="color: rgb(209, 122, 41);">Preferencia: </label>
+                <label *ngIf="lineaDePlato.preferencia">Para comer aqui.</label> 
+                <label *ngIf="!lineaDePlato.preferencia">Para llevar.</label> <br>
+                <div class="text-right">
+                  <i class="fas fa-trash-alt" style="color: red;" (click)="eliminarPlato(lineaDePlato)"></i> 
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
           </div>
-        </div>
-        <!--DETALLES GUARNICION-->
-        <div *ngIf="LINEADEGUARNICIONDETALLES"> 
-          <div class="text-align p-2"> 
-            <span class="text-left"  style="font-weight: bold;color:rgb(62, 170, 58);">GUARNICION</span> 
-            <i class="fa fa-pencil" style="padding-left: 10%; color:rgb(62, 170, 58);" (click)="abrirDialogParaEditarGuarnicion(LINEADEGUARNICIONDETALLES)"></i>
-            <i class="fas fa-trash-alt" style="padding-left: 40px; color:rgb(62, 170, 58);" (click)="eliminarGuarnicion(LINEADEGUARNICIONDETALLES)"></i> 
-          </div>  
-          <br> 
-          <div>
-            <h2>
-              <label style="color: rgb(62, 170, 58);">Nombre: </label>
-              {{LINEADEGUARNICIONDETALLES.guarnicion.nombre}} <br>
-              <label style="color: rgb(62, 170, 58);">Cantidad: </label>
-              {{LINEADEGUARNICIONDETALLES.cantidad}} <br> 
-              <label style="color: rgb(62, 170, 58);">Precio por unidad: </label>
-              {{LINEADEGUARNICIONDETALLES.guarnicion.precio}} <br>
-              <label style="color: rgb(62, 170, 58);">Descripcion: </label>
-              {{LINEADEGUARNICIONDETALLES.descripcion}} <br>
-              <label style="color: rgb(62, 170, 58);">Precio final: </label>
-              {{LINEADEGUARNICIONDETALLES.guarnicion.precio*LINEADEGUARNICIONDETALLES.cantidad}}
-            </h2>
+          <br>
+          <!--DETALLES GUARNICION-->
+          <div *ngIf="Pedido.lineaDeGuarniciones">  
+            <mat-accordion>
+              <mat-expansion-panel hideToggle *ngFor="let lineaDeGuarnicion of Pedido.lineaDeGuarniciones">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="guarniciones"> 
+                    {{lineaDeGuarnicion.guarnicion.nombre}}
+                    ({{lineaDeGuarnicion.cantidad}}) -- 
+                    S/{{lineaDeGuarnicion.guarnicion.precio*lineaDeGuarnicion.cantidad}}.00  
+                  </mat-panel-title> 
+                </mat-expansion-panel-header> 
+                <label *ngIf="lineaDeGuarnicion.descripcion" style="color: rgb(62, 170, 58);">Descripcion: </label> 
+                <label *ngIf="lineaDeGuarnicion.descripcion">{{lineaDeGuarnicion.descripcion}} </label>
+                <div class="text-right">
+                  <i class="fas fa-trash-alt" style="color: red;" (click)="eliminarGuarnicion(lineaDeGuarnicion)"></i> 
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
           </div>
         </div>
       </div>

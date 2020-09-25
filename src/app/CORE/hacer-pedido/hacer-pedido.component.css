@@ -1,0 +1,13 @@
+.mat-expansion-panel-header-title{
+    font-size: medium;
+}
+
+.mat-expansion-panel-header-title.bebidas{
+    color: rgb(60, 156, 235);
+}
+.mat-expansion-panel-header-title.platos{
+    color: rgb(209, 122, 41);
+}
+.mat-expansion-panel-header-title.guarniciones{
+    color: rgb(62, 170, 58);
+}

@@ -26,7 +26,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
-import {MatRippleModule} from '@angular/material/core';
+import {MatRippleModule} from '@angular/material/core'; 
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import {MesaService} from './CRUDS/mesa/mesa-service/mesa.service';
 import {BebidaService} from './CRUDS/bebida/bebida-service/bebida.service';
@@ -82,6 +83,7 @@ const routes: Routes = [
     MatSelectModule,
     MatIconModule,
     MatRippleModule,
+    MatExpansionModule,
   ],
   providers: [
     MesaService,

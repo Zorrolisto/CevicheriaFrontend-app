@@ -4,7 +4,7 @@
         <mat-label>Nombre</mat-label>
           <mat-select  [(ngModel)]="data.guarnicion.id" (selectionChange)="onSelectValueChangeGuarnicion()">
           <mat-option *ngFor="let guarnicion of Guarniciones" [value]="guarnicion.id">
-              {{guarnicion.nombre}}
+              {{guarnicion.nombre}} -- S/{{guarnicion.precio}}.00
           </mat-option>
         </mat-select>
     </mat-form-field> 

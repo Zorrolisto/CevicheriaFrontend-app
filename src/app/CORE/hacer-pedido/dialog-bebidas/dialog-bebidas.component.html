@@ -5,7 +5,8 @@
           <mat-select [(ngModel)]="data.bebida.id" (selectionChange)="onSelectValueChangeBebida()">
           <mat-option *ngFor="let bebida of Bebidas" [value]="bebida.id">
               {{bebida.nombre}}
-            <label *ngIf="bebida.litraje">- {{bebida.litraje}}</label>
+            <label *ngIf="bebida.litraje">-{{bebida.litraje}}</label>
+            -- S/{{bebida.precio}}.00
           </mat-option>
         </mat-select>
     </mat-form-field>
